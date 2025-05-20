@@ -1,0 +1,34 @@
+<div class="container">
+    <h2 class="title">{{ content.title }}</h2>
+    
+    <p-carousel
+        class="motorcycles"
+        orientation="horizontal"
+        [value]="content.motorcycles"
+        [numVisible]="1"
+        [numScroll]="1"
+        [showIndicators]="true"
+    >
+        <ng-template pTemplate="item" let-moto>
+            <div class="motorcycle">
+                <div class="motorcycle__info">
+                    <h3 class="motorcycle__info__title">{{ moto.name }}</h3>
+                    <div class="motorcycle__info__spec">
+                        @for (spec of moto.specifications; track $index) {
+                            <div class="motorcycle__info__spec__item">
+                                <h5>{{ spec.title }}</h5>
+                                <p>{{ spec.text }}</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+    
+                <img
+                    class="motorcycle__img"
+                    alt="{{ moto.name }}"
+                    [src]="moto.motoImg"
+                />
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>

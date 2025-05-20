@@ -1,0 +1,122 @@
+:host {
+    background-color: var(--color-section-background-secondary);
+    
+    .container {
+        padding: var(--spacing-section);
+        padding-left: var(--spacing-xxs);
+        padding-right: var(--spacing-xxs);
+        max-width: 1600px;
+        margin: auto;
+    }
+
+    ::ng-deep {
+        .p-carousel-content {
+            gap: var(--spacing-xxxs);
+        }
+        
+        .p-button-text.p-button-secondary {
+            background: var(--color-carousel-arrows);
+            color: var(--color-white);
+        }
+
+        .p-carousel-indicator-list {
+            padding-top: var(--spacing-md);
+        }
+
+        .p-carousel-indicator-active .p-carousel-indicator-button {
+            background: var(--color-primary);
+        }
+    }
+
+    .title {
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .motorcycles {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xxl);
+
+        .motorcycle {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--spacing-sm);
+
+            &__img {
+                object-fit: contain;
+                height: 100%;
+                width: calc(40% - var(--spacing-sm));
+                max-height: 400px;
+                align-self: center;
+            }
+
+            &__info {
+                width: calc(60% - var(--spacing-sm));
+
+                &__title {
+                    margin-bottom: var(--spacing-md);
+                }
+
+                &__spec {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: var(--spacing-xs);
+
+                    &__item {
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--spacing-quarck);
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 999.98px) {
+        .container {
+            padding: var(--spacing-lg) var(--spacing-xxs);
+        }
+
+        .motorcycles {
+            
+            .motorcycle {
+                flex-direction: column-reverse;
+                gap: var(--spacing-xxxs);
+                text-align: center;
+                align-items: center;
+
+                &__img {
+                    width: 100%;
+                    max-height: 350px;
+                }
+
+                &__info {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 599.98px) {
+        .motorcycles {
+            .motorcycle__info__title {
+                font-size: 34px;
+            }
+        }
+        
+    }
+
+    @media screen and (max-width: 499.98px) {
+        .motorcycles {
+            .motorcycle__info__spec {
+                grid-template-columns: 1fr;
+            }
+
+            .motorcycle__info__title {
+                font-size: 32px;
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,20 @@
+<div class="container">
+    <h2 class="title">{{ content.title }}</h2>
+    
+    <div class="about">
+        <img
+            class="about__img"
+            alt="How it works image"
+            [src]="content.bannerImg"
+        />
+    
+        <div class="about__cards-container">
+            @for (card of content.cards; track $index) {
+                <div class="about__card">
+                    <h6 class="about__card-title">{{ card.title }}</h6>
+                    <p class="about__card-text">{{ card.content }}</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>

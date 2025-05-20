@@ -1,0 +1,77 @@
+<div class="container">
+    <h2 class="title">{{ content.title }}</h2>
+    
+    <p-carousel
+        orientation="horizontal"
+        [value]="combinedPlans"
+        [responsiveOptions]="responsiveOptions"
+        [numVisible]="3"
+        [numScroll]="3"
+        [showIndicators]="true"
+    >
+      <ng-template pTemplate="item" let-plan>
+            <div
+                class="plans__card"
+                [ngClass]="{ 'plans__card--special': plan.isSpecial }"
+            >
+                <ng-container *ngIf="!plan.isSpecial; else specialContent">
+                    <img class="plans__card__img" [src]="plan.planImg" [alt]="plan.planName" />
+                    <h4 class="plans__card__title">{{ plan.planName }}</h4>
+                    <h5 class="plans__card__moto-name">{{ plan.description }}</h5>
+                    <h5 class="plans__card__guarantee">{{ plan.guarantee }}</h5>
+    
+                    <div class="plans__card__values">
+                        @for (value of plan.values; track $index) {
+                            <div class="plans__card__value">
+                                <p>{{ value.time }}</p>
+                                <h6 class="plans__card__value__amount">{{ value.amount }}</h6>
+                            </div>
+                        }
+                    </div>
+    
+                    <button class="plans__card__button btn-primary">{{ plan.button }}</button>
+                </ng-container>
+    
+                <ng-template #specialContent>
+                    <img
+                        class="plans__card__img"
+                        [src]="plan.planImg"
+                        [alt]="plan.planName"
+                    />
+                    <div class="plans__card__tag">{{ plan.tag }}</div>
+    
+                    <h4 class="plans__card__title">{{ plan.planName }}</h4>
+                    <h5 class="plans__card__moto-name">{{ plan.description }}</h5>
+    
+                    <div class="plans__card__values">
+                        @for (info of plan.infos; track $index) {
+                            <div class="plans__card__value">
+                                <p>{{ info.title }}</p>
+                                <h6 class="plans__card__value__amount">{{ info.value }}</h6>
+                            </div>
+                        }
+                    </div>
+    
+                    <div class="plans__card__options">
+                        <h5 class="plans__card__options__title">{{ plan.options.title }}</h5>
+    
+                        <div class="plans__card__options__container">
+                            @for (option of plan.options.options; track $index) {
+                            <div class="plans__card__options__option">
+                                <p class="plans__card__options__option-title">{{ option.title }}</p>
+    
+                                <div>
+                                    <p class="plans__card__options__option-amount">{{ option.amount }}</p>
+                                    <p class="plans__card__options__option-span">{{ option.additionalInfo }}</p>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+    
+                    <button class="plans__card__button btn-primary">{{ plan.button }}</button>
+                </ng-template>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>

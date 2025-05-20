@@ -1,0 +1,70 @@
+:host {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-footer-background);
+    color: var(--color-white);
+    padding: var(--spacing-lg);
+
+
+    h2 {
+        font-size: var(--spacing-xs);
+        color: var(--color-white);
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .logo-content {
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+
+        &__logo {
+            max-width: 200px;
+        }
+    }
+
+    .navigation {
+        &__links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xxxs);
+
+            &__link {
+                color: var(--color-white);
+                transition: color 0.3s;
+
+                &:hover {
+                    color: var(--color-primary);
+                }
+            }
+        }
+    }
+
+    .contact {
+        &__contacts {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xxxs);
+        }
+    }
+
+    .follow-us {
+        &__links {
+            display: flex;
+            gap: var(--spacing-xxs);
+
+            svg {
+                width: 32px;
+                height: 32px;
+
+                cursor: pointer;
+            }
+        }
+    }
+
+    @media screen and (max-width: 999.98px) {
+        flex-direction: column;
+        
+        gap: var(--spacing-lg);
+    }
+}

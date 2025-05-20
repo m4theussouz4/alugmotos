@@ -1,0 +1,26 @@
+<div class="container">
+    <h2 class="title">{{ content.title }}</h2>
+    
+    <div class="units">
+        @for (unit of content.units; track $index) {
+            <div class="units__card">
+                <h5 class="units__card__title">{{ unit.title }}</h5>
+        
+                <div class="units__card__content">
+                    <img src="./assets/icons/map-point.svg" alt="Map Point Icon" width="18" />
+                    <span class="units__card__content__value">{{ unit.address }}</span>
+                </div>
+    
+                <div class="units__card__content" (click)="openWpp(unit.phone)">
+                    <img src="./assets/icons/wpp-icon.svg" alt="Phone Icon" width="18" />
+                    <span class="units__card__content__value">{{ unit.phone }}</span>
+                </div>
+    
+                <div class="units__card__content">
+                    <img src="./assets/icons/clock.svg" alt="Clock Icon" width="18" />
+                    <span class="units__card__content__value">{{ unit.openingHours }}</span>
+                </div>
+            </div>
+        }
+    </div>
+</div>

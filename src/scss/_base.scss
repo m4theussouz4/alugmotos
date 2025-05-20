@@ -1,0 +1,139 @@
+*, :after, :before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--color-scrollbar-thumb);
+    }
+
+    &::-webkit-scrollbar-track {
+        box-shadow: var(--color-scrollbar-track-shadow);
+    }
+
+    &::-webkit-scrollbar-thumb, &::-webkit-scrollbar-track {
+        border-radius: 999px;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        white-space: normal;
+        word-wrap: break-word;
+        background-color: var(--color-page-background);
+        color: var(--color-text-primary);
+        margin: 0;
+
+        * {
+            display: block;
+        }
+    }
+}
+
+input {
+    border: none;
+
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+h1 {
+    color: var(--color-white);
+    font-size: 60px;
+}
+
+h2 {
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    font-size: 46px;
+
+    @media screen and (max-width: 599.98px) {
+        font-size: 42px;
+    }
+
+    @media screen and (max-width: 449.98px) {
+        font-size: 36px;
+    }
+}
+
+h3 {
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    font-size: 40px;
+}
+
+h4 {
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    font-size: 30px;
+}
+
+h5 {
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    font-size: 22px;
+}
+
+h6 {
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    font-size: 20px;
+}
+
+a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-outline-primary, .btn-primary {
+    font-family: "Roboto";
+    width: fit-content;
+    font-size: 18px;
+    font-weight: 600;
+    padding: var(--spacing-xxxs) var(--spacing-xs);
+    letter-spacing: 0.5px;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--spacing-nano);
+    cursor: pointer;
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    color: var(--color-primary);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        border-color: var(--color-primary);
+    }
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+
+    &:hover {
+        background-color: var(--color-secondary);
+        border-color: var(--color-secondary);
+    }
+}
