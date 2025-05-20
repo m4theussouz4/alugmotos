@@ -8,6 +8,7 @@ import { UnitsComponent } from './features/units/units.component';
 import { OperatingRangeComponent } from './features/operating-range/operating-range.component';
 import { FooterComponent } from './features/footer/footer.component';
 import { NavbarComponent } from './features/navbar/navbar.component';
+import { Carousel } from 'primeng/carousel';
 
 @Component({
     selector: 'app-root',
@@ -29,7 +30,9 @@ export class AppComponent implements OnInit {
 
     constructor(
         private firestoreService: FirestoreService,
-    ) { }
+    ) {
+        Carousel.prototype.onTouchMove = () => { };
+    }
 
     ngOnInit(): void {
         this.firestoreService.getCollection().subscribe(data => {
