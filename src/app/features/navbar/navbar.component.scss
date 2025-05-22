@@ -44,8 +44,8 @@
     }
 
     svg {
-        width: 32px;
-        height: 32px;
+        width: 24px;
+        height: 24px;
         align-self: center;
         cursor: pointer;
     }
@@ -61,6 +61,20 @@
 
         .btn {
             margin: 16px;
+        }
+    }
+
+    @media screen and (max-width: 999.98px) {
+        .container {
+            padding: var(--spacing-xxxs) var(--spacing-xxs);
+        }
+
+        .logo {
+            height: 32px;
+        }
+
+        .btn {
+            font-size: 15px;
         }
     }
 }

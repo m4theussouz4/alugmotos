@@ -78,6 +78,10 @@
             padding: var(--spacing-lg) var(--spacing-xxs);
         }
 
+        .title {
+            margin-bottom: var(--spacing-sm);
+        }
+
         .motorcycles {
             
             .motorcycle {
@@ -99,9 +103,24 @@
     }
 
     @media screen and (max-width: 599.98px) {
+        ::ng-deep {
+            .p-carousel-prev-button {
+                position: absolute;
+            }
+
+            .p-carousel-next-button {
+                position: absolute;
+                right: var(--spacing-xxs);
+            }
+        }
         .motorcycles {
+            .motorcycle__info__spec {
+                gap: var(--spacing-xxs);
+            }
+
             .motorcycle__info__title {
                 font-size: 34px;
+                margin-bottom: var(--spacing-xs);
             }
         }
         
@@ -114,7 +133,13 @@
             }
 
             .motorcycle__info__title {
-                font-size: 32px;
+                font-size: 30px;
+            }
+
+            .motorcycle__info__spec {
+                h5 {
+                    font-size: 20px;
+                }
             }
         }
         
