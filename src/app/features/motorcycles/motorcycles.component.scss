@@ -17,6 +17,15 @@
         .p-button-text.p-button-secondary {
             background: var(--color-carousel-arrows);
             color: var(--color-white);
+
+            &:hover {
+                background: var(--color-carousel-arrows) !important;
+                color: var(--color-white) !important;
+            }
+        }
+
+        .p-carousel-indicator-button {
+            background: var(--color-white);
         }
 
         .p-carousel-indicator-list {
@@ -106,11 +115,13 @@
         ::ng-deep {
             .p-carousel-prev-button {
                 position: absolute;
+                z-index: 9;
             }
 
             .p-carousel-next-button {
                 position: absolute;
                 right: var(--spacing-xxs);
+                z-index: 9;
             }
         }
         .motorcycles {

@@ -1,0 +1,90 @@
+<span class="section-title">Edição da seção nossos planos</span>
+
+<form [formGroup]="form">
+    <div class="field-title">Título</div>
+    <input type="text" pInputText formControlName="title" placeholder="Título da seção" [style.width]="'100%'" />
+
+    <div class="field-title">Planos</div>
+    <div formArrayName="plans" class="cards-container">
+        <div *ngFor="let card of plans.controls; let i = index" [formGroupName]="i" class="card-item">
+            <div class="card-number">Plano {{ i + 1 }}</div>
+
+            <div class="field-title">Imagem do plano</div>
+            <input type="file" pInputFile accept="image/*" (change)="onPlanFileChange($event, i)" [style.width]="'100%'" />
+
+            <div class="field-title">Nome do plano</div>
+            <input type="text" pInputText formControlName="planName" placeholder="Nome do plano" [style.width]="'100%'" />
+
+            <div class="field-title">Nome da moto</div>
+            <input type="text" pInputText formControlName="description" placeholder="Nome da moto" [style.width]="'100%'" />
+
+            <div class="field-title">Caução</div>
+            <input type="text" pInputText formControlName="guarantee" placeholder="Caução" [style.width]="'100%'" />
+
+            <div class="field-title">Valores</div>
+            <div formArrayName="values" class="specifications-container">
+                <div *ngFor="let value of valuesArray(i).controls; let j = index" [formGroupName]="j" class="specification-item">
+                    <input type="text" pInputText formControlName="time" placeholder="tempo" [style.width]="'100%'" />
+                    <input type="text" pInputText formControlName="amount" placeholder="valor" [style.width]="'100%'" />
+                </div>
+
+                <button class="btn btn-primary mt-12" (click)="addNewPlanValue(i)">Adicionar Valor</button>
+
+                <p-button label="Excluir último valor" severity="danger" class="btn-clean" (onClick)="deleteLastPlanValue(i)" />
+            </div>
+            
+            <div class="field-title">Texto do botão</div>
+            <input type="text" pInputText formControlName="button" placeholder="Texto do botão" [style.width]="'100%'" />
+            
+            <div class="field-title">Botão está ativo</div>
+            <p-toggleswitch formControlName="buttonActive" />
+            
+            <p-button label="Excluir" severity="danger" class="btn-delete" (onClick)="deletePlan(i)" />
+        </div>
+    </div>
+
+    <button class="btn btn-primary" (click)="addNewPlan()">Adicionar Plano</button>
+
+    <!-- special plan -->
+    <ng-container formGroupName="specialPlan">
+        <div class="cards-container mt-64">
+            <div class="card-item">
+                <div class="card-number">Plano Especial</div>
+
+                <div class="field-title">Tag</div>
+                <input type="text" pInputText formControlName="tag" placeholder="Tag do plano especial" [style.width]="'100%'" />
+
+                <div class="field-title">Imagem do plano</div>
+                <input type="file" pInputFile accept="image/*" (change)="onSpecialPlanFileChange($event)" [style.width]="'100%'" />
+
+                <div class="field-title">Nome do plano</div>
+                <input type="text" pInputText formControlName="planName" placeholder="Nome do plano" [style.width]="'100%'" />
+
+                <div class="field-title">Descrição</div>
+                <input type="text" pInputText formControlName="description" placeholder="Descrição do plano" [style.width]="'100%'" />
+
+                <div class="field-title">Informações</div>
+                <div formArrayName="infos" class="specifications-container">
+                    <div *ngFor="let value of specialPlanInfos.controls; let j = index" [formGroupName]="j" class="specification-item">
+                        <input type="text" pInputText formControlName="title" placeholder="título" [style.width]="'100%'" />
+                        <input type="text" pInputText formControlName="value" placeholder="valor" [style.width]="'100%'" />
+                    </div>
+
+                    <button class="btn btn-primary mt-12" (click)="addNewSpecialPlanInfo()">Adicionar Info</button>
+
+                    <p-button label="Excluir última info" severity="danger" class="btn-clean" (onClick)="deleteLastSpecialPlanInfo()" />
+                </div>
+
+                <div class="field-title">Texto do botão</div>
+                <input type="text" pInputText formControlName="button" placeholder="Texto do botão" [style.width]="'100%'" />
+            
+                <div class="field-title">Botão está ativo</div>
+                <p-toggleswitch formControlName="buttonActive" />
+            </div>
+        </div>
+    </ng-container>
+
+    <div class="buttons">
+        <button class="btn btn-primary" (click)="saveSection()">Salvar</button>
+    </div>
+</form>

@@ -1,0 +1,62 @@
+<span class="section-title">Edição do rodapé</span>
+
+<form [formGroup]="form">
+    
+    <div class="cards-container">
+        <div class="card-item">
+            <div class="card-number">Apresentação</div>
+
+            <div class="field-title">Logo</div>
+            <input type="file" pInputFile accept="image/*" (change)="onFileChange($event, 'logoImg')" [style.width]="'100%'" />
+        
+            <div class="field-title">Descrição</div>
+            <textarea rows="3" cols="30" pTextarea [autoResize]="true" [style.width]="'100%'" formControlName="description"></textarea>
+
+        </div>
+
+        <div class="card-item">
+            <div class="card-number">Navegação</div>
+
+            <ng-container formGroupName="navegation">
+                <div class="field-title">Título da navegação</div>
+                <input type="text" pInputText formControlName="title" placeholder="Título da navegação" [style.width]="'100%'" />
+        
+                <div class="field-title">Links de navegação</div>
+                <div formArrayName="links" class="links-container">
+                    <div *ngFor="let link of links.controls; let i = index" [formGroupName]="i" class="link-item">
+                        <input type="text" pInputText formControlName="text" placeholder="Texto do link" [style.width]="'100%'" />
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        
+        <div class="card-item">
+            <div class="card-number">Contatos</div>
+
+            <ng-container formGroupName="contact">
+                <div class="field-title">WhatsApp</div>
+                <input type="text" pInputText formControlName="phone" placeholder="Número do WhatsApp" [style.width]="'100%'" />
+                
+                <div class="field-title">Email</div>
+                <input type="email" pInputText formControlName="email" placeholder="Email de contato" [style.width]="'100%'" />
+                
+                <div class="card-item mt-16">
+                    <div class="field-title mt-0">Horários de atendimento</div>
+                    <div formArrayName="openingHours" class="specifications-container">
+                        <div *ngFor="let hour of openingHours.controls; let i = index" [formGroupName]="i" class="specification-item">
+                            <input type="text" pInputText formControlName="time" [style.width]="'100%'" />
+                        </div>
+        
+                        <button type="button" class="btn btn-primary" (click)="addNewOpeningHour()">Adicionar Horário</button>
+            
+                        <p-button label="Excluir último horário" severity="danger" class="btn-clean" (onClick)="deleteLastOpeningHour()" />
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="btn btn-primary" (click)="saveSection()">Salvar</button>
+    </div>
+</form>

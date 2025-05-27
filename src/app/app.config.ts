@@ -15,7 +15,12 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
     provideAnimationsAsync(),
     providePrimeNG({
-      theme: { preset: Aura }
+      theme: {
+        preset: Aura,
+        options: {
+            darkModeSelector: false || 'none'
+        }
+      }
     })
   ]
 };

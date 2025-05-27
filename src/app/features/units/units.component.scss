@@ -21,7 +21,7 @@
         &__card {
             display: flex;
             flex-direction: column;
-            max-width: 350px;
+            max-width: 355px;
             padding: var(--spacing-xs);
             gap: var(--spacing-xxs);
             border-radius: 16px;
@@ -36,6 +36,12 @@
                 display: flex;
                 gap: var(--spacing-nano);
                 align-items: flex-start;
+
+                .opening-hours {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--spacing-nano);
+                }
 
                 &__value {
                     font-size: 16px;

@@ -1,22 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Firestore, doc, docData, collection, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Observable, map } from 'rxjs';
+import { AuthService } from './auth.service';
+import { User } from '@angular/fire/auth';
 
 @Injectable({ providedIn: 'root' })
 export class FirestoreService {
-  constructor(private firestore: Firestore) {}
 
-  getHeroSection(): Observable<any> {
-    const ref = doc(this.firestore, 'siteContent/heroSection');
-    return docData(ref);
-  }
+  constructor(
+    private firestore: Firestore,
+    private auth: AuthService
+  ) { }
 
-  getPlanos(): Observable<any> {
-    const ref = doc(this.firestore, 'siteContent/planos');
-    return docData(ref);
-  }
-
-  // Retorna todos os documentos de uma collection como objeto indexado pelo id
+  // Retorna todos os documentos da collection como objeto indexado pelo id
   getCollection(): Observable<any> {
     const ref = collection(this.firestore, 'siteContent');
     return collectionData(ref, { idField: 'id' }).pipe(
@@ -27,5 +23,42 @@ export class FirestoreService {
     );
   }
 
-  // Adicione mais métodos para outras seções
+  // Editar (update) documento existente
+  async updateDocument(docId: string, data: any) {
+    const user = this.auth.user$.value as User | null;
+    if (!user) {
+      alert('Usuário não autenticado');
+      throw new Error('Usuário não autenticado');
+    }
+
+    const docRef = doc(this.firestore, 'siteContent', docId);
+
+    try {
+      await updateDoc(docRef, data);
+      alert('Documento salvo com sucesso!');
+    } catch (error) {
+      console.error('Erro ao salvar documento:', error);
+      alert('Erro ao salvar documento. Verifique o console para mais detalhes.');
+    }
+  }
+
+  // Criar ou sobrescrever (set) documento
+  async setDocument(docId: string, data: any) {
+    const user = this.auth.user$.value as User | null;
+    if (!user) {
+      alert('Usuário não autenticado');
+      throw new Error('Usuário não autenticado');
+    }
+
+    const docRef = doc(this.firestore, 'siteContent', docId);
+
+    try {
+      await setDoc(docRef, data);
+      alert('Documento salvo com sucesso!');
+    } catch (error) {
+      console.error('Erro ao salvar documento:', error);
+      alert('Erro ao salvar documento. Verifique o console para mais detalhes.');
+    }
+  }
+
 }

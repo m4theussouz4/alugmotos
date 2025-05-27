@@ -5,8 +5,8 @@
         orientation="horizontal"
         [value]="combinedPlans"
         [responsiveOptions]="responsiveOptions"
-        [numVisible]="3"
-        [numScroll]="3"
+        [numVisible]="4"
+        [numScroll]="4"
         [showIndicators]="true"
     >
       <ng-template pTemplate="item" let-plan>
@@ -14,12 +14,12 @@
                 class="plans__card"
                 [ngClass]="{ 'plans__card--special': plan.isSpecial }"
             >
-                <ng-container *ngIf="!plan.isSpecial; else specialContent">
+                @if (!plan.isSpecial) {
                     <img class="plans__card__img" [src]="plan.planImg" [alt]="plan.planName" />
                     <h4 class="plans__card__title">{{ plan.planName }}</h4>
                     <h5 class="plans__card__moto-name">{{ plan.description }}</h5>
                     <h5 class="plans__card__guarantee">{{ plan.guarantee }}</h5>
-    
+
                     <div class="plans__card__values">
                         @for (value of plan.values; track $index) {
                             <div class="plans__card__value">
@@ -28,21 +28,23 @@
                             </div>
                         }
                     </div>
-    
-                    <button class="plans__card__button btn-primary">{{ plan.button }}</button>
-                </ng-container>
-    
-                <ng-template #specialContent>
+
+                    <button
+                        class="plans__card__button btn-primary"
+                        [class.btn-disabled]="!plan.buttonActive"
+                        (click)="openForm(plan.planName)"
+                    >{{ plan.button }}</button>
+                } @else {
                     <img
                         class="plans__card__img"
                         [src]="plan.planImg"
                         [alt]="plan.planName"
                     />
                     <div class="plans__card__tag">{{ plan.tag }}</div>
-    
+        
                     <h4 class="plans__card__title">{{ plan.planName }}</h4>
                     <h5 class="plans__card__moto-name">{{ plan.description }}</h5>
-    
+        
                     <div class="plans__card__values">
                         @for (info of plan.infos; track $index) {
                             <div class="plans__card__value">
@@ -51,27 +53,30 @@
                             </div>
                         }
                     </div>
-    
-                    <div class="plans__card__options">
-                        <h5 class="plans__card__options__title">{{ plan.options.title }}</h5>
-    
-                        <div class="plans__card__options__container">
-                            @for (option of plan.options.options; track $index) {
-                            <div class="plans__card__options__option">
-                                <p class="plans__card__options__option-title">{{ option.title }}</p>
-    
-                                <div>
-                                    <p class="plans__card__options__option-amount">{{ option.amount }}</p>
-                                    <p class="plans__card__options__option-span">{{ option.additionalInfo }}</p>
-                                </div>
-                            </div>
-                            }
-                        </div>
-                    </div>
-    
-                    <button class="plans__card__button btn-primary">{{ plan.button }}</button>
-                </ng-template>
+        
+                    <button
+                        class="plans__card__button btn-primary"
+                        [class.btn-disabled]="!plan.buttonActive"
+                        (click)="openForm(plan.planName)"
+                    >{{ plan.button }}</button>
+                }
             </div>
         </ng-template>
     </p-carousel>
 </div>
+
+<p-dialog header="Edit Profile" [modal]="true" [(visible)]="dialogVisible" [style]="{ width: '25rem' }">
+    <span class="p-text-secondary block mb-8">Update your information.</span>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="username" class="font-semibold w-24">Username</label>
+        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="email" class="font-semibold w-24">Email</label>
+        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+    </div>
+    <!-- <div class="flex justify-end gap-2">
+        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+        <p-button label="Save" (click)="visible = false" />
+    </div> -->
+</p-dialog>

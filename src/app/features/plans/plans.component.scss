@@ -1,8 +1,13 @@
 :host {
     ::ng-deep {
         .p-button-text.p-button-secondary {
-            background: var(--color-carousel-arrows);
+            background: var(--color-primary);
             color: var(--color-white);
+
+            &:hover {
+                background: var(--color-primary) !important;
+                color: var(--color-white) !important;
+            }
         }
 
         .p-carousel-indicator-list {
@@ -14,15 +19,11 @@
         }
 
         .p-carousel-item-list {
-            padding: var(--spacing-xxxs);
+            padding: var(--spacing-xxxs) 0;
         }
 
         .p-carousel-item {
             justify-items: center;
-        }
-
-        .p-carousel-prev-button, .p-carousel-next-button {
-            display: none;
         }
 
         .p-carousel-prev-button {
@@ -37,19 +38,13 @@
             z-index: 1;
         }
 
-        @media screen and (max-width: 1249.98px) {
-            .p-carousel-item {
-                justify-items: unset;
+        @media screen and (max-width: 449.98px) {
+            .p-carousel-prev-button {
+                left: 8px;
             }
 
-            .p-carousel-prev-button, .p-carousel-next-button {
-                display: block;
-            }
-        }
-
-        @media screen and (max-width: 699.98px) {
-            .p-carousel-item {
-                margin-right: 24px;
+            .p-carousel-next-button {
+                right: 8px;
             }
         }
     }
@@ -70,7 +65,7 @@
     .plans {
         &__card {
             flex: 1 1 calc(33.333% - var(--spacing-sm));
-            max-width: 380px;
+            width: 350px;
             height: 100%;
             background-color: var(--color-white);
             padding: var(--spacing-sm);
@@ -98,7 +93,7 @@
             }
 
             &__guarantee {
-                font-size: 22px;
+                font-size: 20px;
                 font-weight: 700;
                 margin-bottom: var(--spacing-nano);
             }
@@ -114,7 +109,11 @@
                 gap: var(--spacing-xxxs);
                 padding: var(--spacing-xxs) 0;
                 border-bottom: 2px solid var(--color-border);
-                font-size: 18px;
+                font-size: 16px;
+
+                &__amount {
+                    font-size: 18px;
+                }
             }
 
             &__button {
@@ -153,20 +152,9 @@
                         margin-bottom: var(--spacing-xs);
                     }
 
-                    &__values {
-                        display: flex;
-                        flex-direction: column;
-                        gap: var(--spacing-xxxs);
-                        margin-bottom: var(--spacing-sm);
-                    }
-
                     &__value {
-                        border: none;
-                        justify-content: center;
-                        gap: var(--spacing-quarck);
                         font-weight: 500;
                         color: var(--color-text-secondary);
-                        padding: unset;
 
                         &__amount {
                             font-size: 18px;
@@ -238,28 +226,34 @@
 
     @media screen and (max-width: 699.98px) {
         .plans__card {
-            max-width: unset;
-
             &--special {
 
                 .plans__card {
                     &__img {
                         margin-bottom: var(--spacing-xxxs);
                     }
-        
+
                     &__title {
                         margin-bottom: var(--spacing-nano);
                     }
-        
+
                     &__moto-name {
                         margin-bottom: var(--spacing-xxs);
                     }
-        
+
                     &__values {
                         margin-bottom: var(--spacing-xs);
                     }
                 }
             }
         }
-     }
+    }
+
+    @media screen and (max-width: 399.98px) {
+        .plans__card {
+            width: 300px;
+            padding: var(--spacing-xs);
+        }
+        
+    }
 }

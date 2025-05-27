@@ -4,6 +4,16 @@
     max-width: 950px;
     margin: auto;
 
+    ::ng-deep {
+        .leaflet-control-attribution {
+            display: flex;
+        }
+
+        .leaflet-top, .leaflet-bottom {
+            z-index: 998;
+        }
+    }
+
     .title {
         margin-bottom: var(--spacing-xs);
     }

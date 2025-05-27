@@ -1,0 +1,82 @@
+:host {
+    .links-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+
+        .link-item {
+            width: calc(50% - 8px);
+
+            input {
+                width: 100%
+            }
+        }
+    }
+
+    .cards-container {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 24px;
+
+        .card-item {
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            padding: 12px;
+
+            .card-number {
+                font-size: 20px;
+                font-weight: 600;
+                color: var(--color-primary);
+            }
+        }
+    }
+    
+    .specifications-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .specification-item {
+            display: flex;
+            gap: 12px;
+        }
+    }
+
+    .btn {
+        width: 100%;
+        padding: var(--spacing-nano) var(--spacing-xxs);
+        font-size: 14px;
+        margin-top: 24px;
+    }
+
+    .btn-delete {
+        margin-top: 16px;
+        margin-left: auto;
+        float: right;
+    }
+
+    .btn-clean {
+        width: 100%;
+        
+        ::ng-deep {
+            button {
+                font-size: 14px;
+                width: 100%;
+                border-radius: 8px;
+            }
+        }
+    }
+
+    .mt-0 {
+        margin-top: 0;
+    }
+
+    .mt-16 {
+        margin-top: 16px;
+    }
+
+    .mt-40 {
+        margin-top: 40px;
+    }
+}

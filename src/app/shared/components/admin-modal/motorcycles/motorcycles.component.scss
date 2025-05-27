@@ -1,0 +1,43 @@
+:host {
+    .cards-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .card-item {
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            padding: 12px;
+
+            .card-number {
+                font-size: 20px;
+                font-weight: 600;
+                color: var(--color-primary);
+            }
+        }
+    }
+    
+    .specifications-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .specification-item {
+            display: flex;
+            gap: 12px;
+        }
+    }
+
+    .btn {
+        width: 100%;
+        padding: var(--spacing-nano) var(--spacing-xxs);
+        font-size: 14px;
+        margin-top: 24px;
+    }
+
+    .btn-delete {
+        margin-top: 16px;
+        margin-left: auto;
+        float: right;
+    }
+}

@@ -18,7 +18,11 @@
     
                 <div class="units__card__content">
                     <img src="./assets/icons/clock.svg" alt="Clock Icon" width="18" />
-                    <span class="units__card__content__value">{{ unit.openingHours }}</span>
+                    <div class="opening-hours">
+                        @for (hour of unit.openingHours; track $index) {
+                            <span class="units__card__content__value">{{ hour.time }}</span>
+                        }
+                    </div>
                 </div>
             </div>
         }

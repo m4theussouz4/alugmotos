@@ -1,0 +1,32 @@
+<span class="section-title">Edição da seção Raios de Operação</span>
+
+<form [formGroup]="form">
+    <div class="field-title">Título</div>
+    <input type="text" pInputText formControlName="title" placeholder="Título da seção" [style.width]="'100%'" />
+
+    <div class="field-title">Descrição</div>
+    <textarea rows="3" cols="30" pTextarea [autoResize]="true" formControlName="subtitle" placeholder="Descrição da seção" [style.width]="'100%'"></textarea>
+
+    <div class="field-title">Raios de Operação</div>
+    <div formArrayName="ranges" class="cards-container">
+        <div *ngFor="let range of ranges.controls; let i = index" [formGroupName]="i" class="card-item">
+            <div class="card-number">Raio {{ i + 1 }}</div>
+
+            <div class="field-title">Nome do Raio</div>
+            <input type="text" pInputText formControlName="title" placeholder="Nome do raio" [style.width]="'100%'" />
+
+            <div class="field-title">Distância em metros (integração - mapa)</div>
+            <input type="number" pInputText formControlName="range" placeholder="Distância em metros" [style.width]="'100%'" />
+
+            <div class="field-title">Subtítulo</div>
+            <input type="text" pInputText formControlName="subtitle" placeholder="Subtítulo do raio" [style.width]="'100%'" />
+
+            <div class="field-title">Descrição</div>
+            <textarea rows="3" cols="30" pTextarea [autoResize]="true" formControlName="description" placeholder="Descrição do raio" [style.width]="'100%'"></textarea>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="btn btn-primary" (click)="saveSection()">Salvar</button>
+    </div>
+</form>
