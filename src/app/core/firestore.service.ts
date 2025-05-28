@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, doc, setDoc, updateDoc } from '@angular/fire/firestore';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { AuthService } from './auth.service';
 import { User } from '@angular/fire/auth';
 
 @Injectable({ providedIn: 'root' })
 export class FirestoreService {
+  public isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private firestore: Firestore,
@@ -33,6 +34,7 @@ export class FirestoreService {
 
     const docRef = doc(this.firestore, 'siteContent', docId);
 
+    this.isLoading$.next(true);
     try {
       await updateDoc(docRef, data);
       alert('Documento salvo com sucesso!');
@@ -40,6 +42,7 @@ export class FirestoreService {
       console.error('Erro ao salvar documento:', error);
       alert('Erro ao salvar documento. Verifique o console para mais detalhes.');
     }
+    this.isLoading$.next(false);
   }
 
   // Criar ou sobrescrever (set) documento
@@ -52,6 +55,7 @@ export class FirestoreService {
 
     const docRef = doc(this.firestore, 'siteContent', docId);
 
+    this.isLoading$.next(true);
     try {
       await setDoc(docRef, data);
       alert('Documento salvo com sucesso!');
@@ -59,6 +63,7 @@ export class FirestoreService {
       console.error('Erro ao salvar documento:', error);
       alert('Erro ao salvar documento. Verifique o console para mais detalhes.');
     }
+    this.isLoading$.next(false);
   }
 
 }

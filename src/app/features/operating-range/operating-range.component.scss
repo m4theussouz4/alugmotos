@@ -6,7 +6,7 @@
 
     ::ng-deep {
         .leaflet-control-attribution {
-            display: flex;
+            display: flex !important;
         }
 
         .leaflet-top, .leaflet-bottom {

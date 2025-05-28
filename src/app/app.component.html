@@ -8,3 +8,7 @@
     <app-operating-range [content]="siteContent.range" id="section6" />
     <app-footer [fullContent]="siteContent" [content]="siteContent.footer" id="section7" /> 
 }
+
+@if (isLoading$ | async) {
+    <app-custom-progress-bar />
+}

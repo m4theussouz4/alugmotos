@@ -9,6 +9,8 @@ import { OperatingRangeComponent } from './features/operating-range/operating-ra
 import { FooterComponent } from './features/footer/footer.component';
 import { NavbarComponent } from './features/navbar/navbar.component';
 import { Carousel } from 'primeng/carousel';
+import { CustomProgressBarComponent } from './shared/components/custom-progress-bar/custom-progress-bar.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-root',
@@ -21,17 +23,21 @@ import { Carousel } from 'primeng/carousel';
         OperatingRangeComponent,
         FooterComponent,
         NavbarComponent,
+        CustomProgressBarComponent,
+        CommonModule,
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
     public siteContent: any;
+    public isLoading$: any;
 
     constructor(
         private firestoreService: FirestoreService,
     ) {
         Carousel.prototype.onTouchMove = () => { };
+        this.isLoading$ = this.firestoreService.isLoading$;
     }
 
     ngOnInit(): void {
