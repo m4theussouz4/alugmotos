@@ -36,7 +36,6 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.firestoreService.getCollection().subscribe(data => {
-          console.log('Hero Section:', data);
           this.siteContent = data;
         });
     }

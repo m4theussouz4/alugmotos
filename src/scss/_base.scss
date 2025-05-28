@@ -31,7 +31,7 @@ html {
         color: var(--color-text-primary);
         margin: 0;
 
-        * {
+        *:not(p-datepicker *):not(p-select *) {
             display: block;
         }
     }

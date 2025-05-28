@@ -10,6 +10,7 @@ import { PlansComponent } from './plans/plans.component';
 import { UnitsComponent } from './units/units.component';
 import { OperatingRangeComponent } from './operating-range/operating-range.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormComponent } from './form/form.component';
 
 @Component({
   selector: 'app-admin-modal',
@@ -25,6 +26,7 @@ import { FooterComponent } from './footer/footer.component';
     UnitsComponent,
     OperatingRangeComponent,
     FooterComponent,
+    FormComponent,
   ],
   templateUrl: './admin-modal.component.html',
   styleUrl: './admin-modal.component.scss'

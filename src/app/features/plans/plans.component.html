@@ -57,7 +57,7 @@
                     <button
                         class="plans__card__button btn-primary"
                         [class.btn-disabled]="!plan.buttonActive"
-                        (click)="openForm(plan.planName)"
+                        (click)="openForm(plan.planName, true)"
                     >{{ plan.button }}</button>
                 }
             </div>
@@ -65,18 +65,65 @@
     </p-carousel>
 </div>
 
-<p-dialog header="Edit Profile" [modal]="true" [(visible)]="dialogVisible" [style]="{ width: '25rem' }">
-    <span class="p-text-secondary block mb-8">Update your information.</span>
-    <div class="flex items-center gap-4 mb-4">
-        <label for="username" class="font-semibold w-24">Username</label>
-        <input pInputText id="username" class="flex-auto" autocomplete="off" />
-    </div>
-    <div class="flex items-center gap-4 mb-8">
-        <label for="email" class="font-semibold w-24">Email</label>
-        <input pInputText id="email" class="flex-auto" autocomplete="off" />
-    </div>
-    <!-- <div class="flex justify-end gap-2">
-        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
-        <p-button label="Save" (click)="visible = false" />
-    </div> -->
+<p-dialog [header]="'Reservar ' + selectedPlan" [modal]="true" [closable]="false" [draggable]="false" [(visible)]="dialogVisible">
+    <form [formGroup]="form">
+        <div class="field-title">Nome</div>
+        <input type="text" pInputText placeholder="Nome completo" formControlName="name" />
+
+        <div class="field-title">Telefone WhatsApp</div>
+        <input type="number" pInputText placeholder="Telefone WhatsApp" formControlName="phone" />
+
+        <div class="field-title">E-mail</div>
+        <input type="email" pInputText placeholder="E-mail" formControlName="email" />
+
+        <div class="field-title">Endereço</div>
+        <textarea rows="1" cols="30" pTextarea [autoResize]="true" formControlName="address" placeholder="Endereço"></textarea>
+
+        <div class="field-title">Cidade</div>
+        <input type="text" pInputText placeholder="Cidade" formControlName="city" />
+
+        <div class="field-title">Forma de pagamento do caução</div>
+        <p-select
+            [options]="paymentMethodList"
+            optionLabel="method"
+            formControlName="paymentMethod"
+            placeholder="Selecione uma forma de pagamento"
+            scrollHeight="150px"
+        ></p-select>
+
+        <div class="field-title">Finalidade da locação</div>
+        <p-select
+            [options]="purposeList"
+            optionLabel="purpose"
+            formControlName="purpose"
+            placeholder="Selecione uma finalidade"
+            scrollHeight="150px"
+        ></p-select>
+
+        @if (isSpecialPlan) {
+            <div class="field-title">Escolha Sua Moto</div>
+            <p-select
+                [options]="motoList"
+                optionLabel="text"
+                formControlName="moto"
+                placeholder="Selecione uma moto"
+                scrollHeight="150px"
+            ></p-select>
+        }
+
+        <div class="field-title">Data da retirada da moto</div>
+        <p-datepicker
+            formControlName="pickupDate"
+            placeholder="Data da retirada"
+            [minDate]="today"
+            [showIcon]="true"
+            [disabledDays]="[0]"
+            [dateFormat]="'dd/mm/yy'"
+        ></p-datepicker>
+        
+        <div class="buttons">
+            <button class="btn btn-primary" [class.btn-disabled]="form.invalid" (click)="submitForm()">Reservar</button>
+            <button class="btn btn-outline-primary" (click)="cancelForm()">Cancelar</button>
+        </div>
+    </form>
 </p-dialog>

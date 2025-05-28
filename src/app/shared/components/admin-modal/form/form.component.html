@@ -1,0 +1,53 @@
+<span class="section-title">Edição do formulário do plano</span>
+
+<form [formGroup]="form">
+    <div class="field-title">WhatsApp com DDD (ex: 21912345678)</div>
+    <input type="text" pInputText formControlName="phone" placeholder="Número do WhatsApp" [style.width]="'100%'" />
+
+    <div class="cards-container">
+        <div class="card-item">
+            <div class="field-title mt-0">Métodos de pagamento</div>
+            <div formArrayName="paymentMethodList" class="specifications-container">
+                <div *ngFor="let method of paymentMethodList.controls; let i = index" [formGroupName]="i" class="specification-item">
+                    <input type="text" pInputText formControlName="method" placeholder="Método de pagamento" [style.width]="'100%'" />
+                </div>
+
+                <button type="button" class="btn btn-primary" (click)="addNewPaymentMethod()">Adicionar Método</button>
+
+                <p-button label="Excluir último método" severity="danger" class="btn-clean" (onClick)="deleteLastPaymentMethod()" />
+            </div>
+        </div>
+
+        <!-- purpose -->
+        <div class="card-item">
+            <div class="field-title mt-0">Finalidades</div>
+            <div formArrayName="purposeList" class="specifications-container">
+                <div *ngFor="let purpose of purposeList.controls; let i = index" [formGroupName]="i" class="specification-item">
+                    <input type="text" pInputText formControlName="purpose" placeholder="Finalidade do plano" [style.width]="'100%'" />
+                </div>
+
+                <button type="button" class="btn btn-primary" (click)="addNewPurpose()">Adicionar Finalidade</button>
+
+                <p-button label="Excluir última finalidade" severity="danger" class="btn-clean" (onClick)="deleteLastPurpose()" />
+            </div>
+        </div>
+
+        <!-- motosAvailable -->
+        <div class="card-item">
+            <div class="field-title mt-0">Motos disponíveis no plano especial</div>
+            <div formArrayName="motosAvailable" class="specifications-container">
+                <div *ngFor="let moto of motosAvailable.controls; let i = index" [formGroupName]="i" class="specification-item">
+                    <input type="text" pInputText formControlName="text" placeholder="Nome da moto disponível" [style.width]="'100%'" />
+                </div>
+
+                <button type="button" class="btn btn-primary" (click)="addNewMoto()">Adicionar Moto</button>
+
+                <p-button label="Excluir última moto" severity="danger" class="btn-clean" (onClick)="deleteLastMoto()" />
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="btn btn-primary" (click)="saveSection()">Salvar</button>
+    </div>
+</form>

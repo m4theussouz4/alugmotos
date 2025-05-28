@@ -11,6 +11,7 @@
             <div class="fake-btn" (click)="sectionSelected = '#section5'"><a href="#section5">Nossas Unidades</a></div>
             <div class="fake-btn" (click)="sectionSelected = '#section6'"><a href="#section6">Raios de Operação</a></div>
             <div class="fake-btn" (click)="sectionSelected = '#section7'"><a href="#section7">Footer</a></div>
+            <div class="fake-btn" (click)="sectionSelected = '#form'">Formulário do plano</div>
         </div>
     } @else {
         @switch (sectionSelected) {
@@ -22,6 +23,7 @@
             @case ('#section5') { <app-units [content]="content"/> }
             @case ('#section6') { <app-operating-range [content]="content"/> }
             @case ('#section7') { <app-footer [content]="content"/> }
+            @case ('#form') { <app-form [content]="content"/> }
         }
     }
     

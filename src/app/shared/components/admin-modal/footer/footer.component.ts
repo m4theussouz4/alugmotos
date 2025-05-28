@@ -8,7 +8,7 @@ import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-footer',
-  imports: [CommonModule, TextareaModule, ReactiveFormsModule, InputTextModule, TextareaModule, ButtonModule],
+  imports: [CommonModule, TextareaModule, ReactiveFormsModule, InputTextModule, ButtonModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
