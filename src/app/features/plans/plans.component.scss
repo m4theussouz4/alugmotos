@@ -22,10 +22,6 @@
             padding: var(--spacing-xxxs) 0;
         }
 
-        .p-carousel-item {
-            justify-items: center !important;
-        }
-
         .p-carousel-prev-button {
             position: absolute;
             left: 25px;
@@ -128,7 +124,7 @@
 
     .plans {
         &__card {
-            flex: 1 1 calc(33.333% - var(--spacing-sm));
+            margin: auto;
             width: 350px;
             height: 100%;
             background-color: var(--color-white);
