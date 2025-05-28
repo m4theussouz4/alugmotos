@@ -23,7 +23,7 @@
         }
 
         .p-carousel-item {
-            justify-items: center;
+            justify-items: center !important;
         }
 
         .p-carousel-prev-button {
@@ -97,6 +97,19 @@
                     padding: 8px 18px;
                 } 
             }
+        }
+
+        @media screen and (max-width: 449.98px) {
+            .p-dialog {
+                .buttons {
+                    flex-direction: column;
+
+                    .btn {
+                        width: 100%;
+                    }
+                }
+            }
+            
         }
     }
 
