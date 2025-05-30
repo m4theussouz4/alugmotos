@@ -41,6 +41,7 @@ export class OperatingRangeComponent implements OnInit {
           title: [rg.title, Validators.required],
           subtitle: [rg.subtitle, Validators.required],
           description: [rg.description, Validators.required],
+          button: [rg.button, Validators.required],
           range: [rg.range, Validators.required]
         }));
       });
@@ -51,7 +52,7 @@ export class OperatingRangeComponent implements OnInit {
     const { value, valid } = this.form;
 
     if (!valid) {
-      console.error('Form is invalid');
+      alert('Form is invalid');
       return;
     }
 

@@ -33,7 +33,9 @@
                         class="plans__card__button btn-primary"
                         [class.btn-disabled]="!plan.buttonActive"
                         (click)="openForm(plan.planName)"
-                    >{{ plan.button }}</button>
+                    >
+                        {{ plan.buttonActive ? plan.button : 'Indisponível' }}
+                    </button>
                 } @else {
                     <img
                         class="plans__card__img"
@@ -58,7 +60,9 @@
                         class="plans__card__button btn-primary"
                         [class.btn-disabled]="!plan.buttonActive"
                         (click)="openForm(plan.planName, true)"
-                    >{{ plan.button }}</button>
+                    >
+                        {{ plan.buttonActive ? plan.button : 'Indisponível' }}
+                    </button>
                 }
             </div>
         </ng-template>

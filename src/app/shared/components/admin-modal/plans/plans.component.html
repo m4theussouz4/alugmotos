@@ -1,4 +1,4 @@
-<span class="section-title">Edição da seção nossos planos</span>
+<span class="section-title">Edição da seção Nossos Planos</span>
 
 <form [formGroup]="form">
     <div class="field-title">Título</div>
@@ -9,8 +9,8 @@
         <div *ngFor="let card of plans.controls; let i = index" [formGroupName]="i" class="card-item">
             <div class="card-number">Plano {{ i + 1 }}</div>
 
-            <div class="field-title">Imagem do plano</div>
-            <input type="file" pInputFile accept="image/*" (change)="onPlanFileChange($event, i)" [style.width]="'100%'" />
+            <div class="field-title">Imagem do plano (URL)</div>
+            <input type="text" pInputText formControlName="planImg" placeholder="URL do plano" [style.width]="'100%'" />
 
             <div class="field-title">Nome do plano</div>
             <input type="text" pInputText formControlName="planName" placeholder="Nome do plano" [style.width]="'100%'" />
@@ -33,6 +33,9 @@
                 <p-button label="Excluir último valor" severity="danger" class="btn-clean" (onClick)="deleteLastPlanValue(i)" />
             </div>
             
+            <div class="field-title">Ordem no Carrossel</div>
+            <input type="number" pInputText formControlName="order" placeholder="Ordem no carrossel" [style.width]="'100%'" />
+            
             <div class="field-title">Texto do botão</div>
             <input type="text" pInputText formControlName="button" placeholder="Texto do botão" [style.width]="'100%'" />
             
@@ -54,9 +57,9 @@
                 <div class="field-title">Tag</div>
                 <input type="text" pInputText formControlName="tag" placeholder="Tag do plano especial" [style.width]="'100%'" />
 
-                <div class="field-title">Imagem do plano</div>
-                <input type="file" pInputFile accept="image/*" (change)="onSpecialPlanFileChange($event)" [style.width]="'100%'" />
-
+                <div class="field-title">Imagem do plano (URL)</div>
+                <input type="text" pInputText formControlName="planImg" placeholder="URL do plano" [style.width]="'100%'" />
+                
                 <div class="field-title">Nome do plano</div>
                 <input type="text" pInputText formControlName="planName" placeholder="Nome do plano" [style.width]="'100%'" />
 

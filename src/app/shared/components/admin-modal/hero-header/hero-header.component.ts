@@ -4,10 +4,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TextareaModule } from 'primeng/textarea';
 import { FirestoreService } from '../../../../core/firestore.service';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-hero-header',
-  imports: [CommonModule, ButtonModule, TextareaModule, ReactiveFormsModule],
+  imports: [CommonModule, ButtonModule, TextareaModule, ReactiveFormsModule, InputTextModule],
   templateUrl: './hero-header.component.html',
   styleUrl: './hero-header.component.scss'
 })

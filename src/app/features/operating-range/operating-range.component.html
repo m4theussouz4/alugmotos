@@ -7,7 +7,8 @@
 
 <div class="range">
     @for (range of content.ranges; let i = $index; track $index) {
-        <div class="range__card">
+        <div class="range__card"
+        (click)="changeZoom(i)">
             <div class="range__card__mark" [ngClass]="{
                 'green': i === 0,
                 'yellow': i === 1,
@@ -17,6 +18,8 @@
             <h5 class="range__card__title">{{ range.title }}</h5>
             <p class="range__card__subtitle">{{ range.subtitle }}</p>
             <p class="range__card__description">{{ range.description }}</p>
+
+            <button class="btn btn-primary" (click)="downloadMap(i)">{{ range.button }}</button>
         </div>
     }
 </div>

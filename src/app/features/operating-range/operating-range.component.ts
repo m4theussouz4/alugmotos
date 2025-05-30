@@ -22,7 +22,6 @@ export class OperatingRangeComponent implements AfterViewInit, OnDestroy {
   }
 
   private initMap(): void {
-    // Usa o elemento referenciado em vez de id
     this.map = L.map(this.mapContainer.nativeElement, {
       center: this.center,
       zoom: 7,
@@ -45,5 +44,20 @@ export class OperatingRangeComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.map.remove();
+  }
+
+  changeZoom(card: number): void {
+    if (this.map) {
+      if (card === 0) { this.map.setZoom(10) }
+      else if (card === 1) { this.map.setZoom(9) }
+      else if (card === 2) { this.map.setZoom(7) }
+    }
+  }
+
+  downloadMap(card: number) {
+    // pega os mapas do assets/pdfs
+    if (card === 0) window.open('assets/pdfs/mapa-50km.pdf', '_blank');
+    else if (card === 1) window.open('assets/pdfs/mapa-100km.pdf', '_blank');
+    else if (card === 2) window.open('assets/pdfs/mapa-200km.pdf', '_blank');
   }
 }

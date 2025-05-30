@@ -1,8 +1,8 @@
-<span class="section-title">Edição da barra de navegação</span>
+<span class="section-title">Edição da Barra de Navegação</span>
 
 <form [formGroup]="navbarForm">
-    <div class="field-title">Logo</div>
-    <input type="file" pInputFile accept="image/*" (change)="onFileChange($event, 'logoImg')" [style.width]="'100%'">
+    <div class="field-title">Logo (URL)</div>
+    <input type="text" pInputText formControlName="logoImg" placeholder="URL da Logo" [style.width]="'100%'" />
     
     <div class="field-title">Texto do botão</div>
     <textarea rows="1" cols="30" pTextarea [autoResize]="true" [style.width]="'100%'" formControlName="buttonApp"></textarea>

@@ -1,4 +1,4 @@
-<span class="section-title">Edição da seção nossas Motos</span>
+<span class="section-title">Edição da seção Nossas Motos</span>
 
 <form [formGroup]="form">
     <div class="field-title">Título</div>
@@ -9,10 +9,10 @@
         <div *ngFor="let card of motorcycles.controls; let i = index" [formGroupName]="i" class="card-item">
             <div class="card-number">Moto {{ i + 1 }}</div>
 
-            <div class="field-title">Imagem da moto</div>
-            <input type="file" pInputFile accept="image/*" (change)="onFileChange($event, i)" [style.width]="'100%'" />
+            <div class="field-title">Imagem da Moto (URL)</div>
+            <input type="text" pInputText formControlName="motoImg" placeholder="URL da imagem da moto" [style.width]="'100%'" />
 
-            <div class="field-title">Nome da moto</div>
+            <div class="field-title">Nome da Moto</div>
             <input type="text" pInputText formControlName="name" placeholder="Nome da moto" [style.width]="'100%'" />
 
             <div class="field-title">Especificações</div>
@@ -22,6 +22,9 @@
                     <input type="text" pInputText formControlName="text" placeholder="Descrição" [style.width]="'100%'" />
                 </div>
             </div>
+
+            <div class="field-title">Ordem no Carrossel</div>
+            <input type="number" pInputText formControlName="order" placeholder="Ordem no carrossel" [style.width]="'100%'" />
 
             <p-button label="Excluir" severity="danger" class="btn-delete" (onClick)="deleteMoto(i)" />
         </div>

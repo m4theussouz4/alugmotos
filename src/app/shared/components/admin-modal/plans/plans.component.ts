@@ -51,6 +51,7 @@ export class PlansComponent implements OnInit {
           guarantee: [plan.guarantee, Validators.required],
           button: [plan.button, Validators.required],
           buttonActive: [plan.buttonActive],
+          order: [plan.order, Validators.required],
           values: this.fb.array(plan.values.map((value: any) => this.fb.group({
             amount: [value.amount, Validators.required],
             time: [value.time, Validators.required]
@@ -78,34 +79,6 @@ export class PlansComponent implements OnInit {
     }
   }
 
-  onPlanFileChange(event: any, index: number) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        const planImgControl = this.form.get(`plans.${index}.planImg`);
-        if (planImgControl) {
-          planImgControl.setValue(e.target.result);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
-  onSpecialPlanFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        const planImgControl = this.form.get('specialPlan.planImg');
-        if (planImgControl) {
-          planImgControl.setValue(e.target.result);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
   addNewPlan() {
     const plansArray = this.form.get('plans') as FormArray;
     plansArray.push(this.fb.group({
@@ -115,6 +88,7 @@ export class PlansComponent implements OnInit {
       guarantee: ['', Validators.required],
       button: ['', Validators.required],
       buttonActive: [true],
+      order: [plansArray.length + 1, Validators.required], // Define a ordem automaticamente
       values: this.fb.array([this.fb.group({
         amount: ['', Validators.required],
         time: ['', Validators.required]
@@ -159,6 +133,14 @@ export class PlansComponent implements OnInit {
 
   saveSection() {
     const { value, valid } = this.form;
+
+    // Verifica se tem 2 planos com ordens iguais e alerta o usuário
+    const orders = value.plans.map((plan: any) => plan.order);
+    const hasDuplicateOrders = orders.some((order: any, index: number) => orders.indexOf(order) !== index);
+    if (hasDuplicateOrders) {
+      alert('Existem planos com ordens iguais. Por favor, corrija isso antes de salvar.');
+      return;
+    }
 
     if (!valid) {
       alert('Preencha todos os campos');

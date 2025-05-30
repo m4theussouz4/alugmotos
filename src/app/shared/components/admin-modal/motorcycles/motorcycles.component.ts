@@ -41,7 +41,7 @@ export class MotorcyclesComponent implements OnInit {
             (motorcyclesArray as any).push(this.fb.group({
               motoImg: [card.motoImg, Validators.required],
               name: [card.name, Validators.required],
-              // array de specifications
+              order: [card.order, Validators.required],
               specifications: this.fb.array(card.specifications.map((spec: any) => this.fb.group({
                 title: [spec.title, Validators.required],
                 text: [spec.text, Validators.required]
@@ -53,25 +53,12 @@ export class MotorcyclesComponent implements OnInit {
     }
   }
 
-  onFileChange(event: Event, index: number) {
-    const target = event.target as HTMLInputElement;
-    const file = target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const motorcyclesArray = this.form.get('motorcycles') as FormArray;
-        const targetMotorcycle = motorcyclesArray.at(index);
-        targetMotorcycle.get('motoImg')?.setValue(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
   addNewMoto() {
     const motorcyclesArray = this.form.get('motorcycles') as FormArray;
     motorcyclesArray.push(this.fb.group({
       motoImg: ['', Validators.required],
       name: ['', Validators.required],
+      order: [motorcyclesArray.length + 1, Validators.required], // Define a ordem automaticamente
       specifications: this.fb.array([]) // Inicia com um array vazio
     }));
 
@@ -92,6 +79,17 @@ export class MotorcyclesComponent implements OnInit {
 
   saveSection() {
     const { value, valid } = this.form;
+
+    // Verifica se tem 2 motos com ordens iguais e alerta o usuário
+    const orders = value.motorcycles.map((moto: any) => moto.order);
+    const hasDuplicateOrders = orders.some((order: any, index: number) => orders.indexOf(order) !== index);
+    if (hasDuplicateOrders) {
+      alert('Existem motocicletas com ordens duplicadas. Por favor, corrija isso antes de salvar.');
+      return;
+    }
+
+    // Coloca o array de motocicletas em ordem
+    value.motorcycles.sort((a: any, b: any) => a.order - b.order);
 
     if (!valid) {
       alert('Preencha todos os campos');

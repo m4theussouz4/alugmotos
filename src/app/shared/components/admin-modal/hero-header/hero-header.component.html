@@ -1,11 +1,11 @@
-<span class="section-title">Edição da seção principal</span>
+<span class="section-title">Edição da Seção Principal</span>
 
 <form [formGroup]="heroForm">
-    <div class="field-title">Imagem de fundo</div>
-    <input type="file" pInputFile accept="image/*" (change)="onFileChange($event, 'backgroundImg')" [style.width]="'100%'">
+    <div class="field-title">Imagem de fundo (URL)</div>
+    <input type="text" pInputText formControlName="backgroundImg" placeholder="URL da imagem de fundo" [style.width]="'100%'" />
 
-    <div class="field-title">Logo</div>
-    <input type="file" pInputFile accept="image/*" (change)="onFileChange($event, 'logoImg')" [style.width]="'100%'">
+    <div class="field-title">Logo (URL)</div>
+    <input type="text" pInputText formControlName="logoImg" placeholder="URL da Logo" [style.width]="'100%'" />
     
     <div class="field-title">Título Principal</div>
     <textarea rows="3" cols="30" pTextarea [autoResize]="true" [style.width]="'100%'" formControlName="title"></textarea>

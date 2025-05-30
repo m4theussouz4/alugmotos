@@ -1,4 +1,4 @@
-<span class="section-title">Edição do rodapé</span>
+<span class="section-title">Edição do Rodapé</span>
 
 <form [formGroup]="form">
     
@@ -6,9 +6,9 @@
         <div class="card-item">
             <div class="card-number">Apresentação</div>
 
-            <div class="field-title">Logo</div>
-            <input type="file" pInputFile accept="image/*" (change)="onFileChange($event, 'logoImg')" [style.width]="'100%'" />
-        
+            <div class="field-title">Logo (URL)</div>
+            <input type="text" pInputText formControlName="logoImg" placeholder="URL da logo" [style.width]="'100%'" />
+            
             <div class="field-title">Descrição</div>
             <textarea rows="3" cols="30" pTextarea [autoResize]="true" [style.width]="'100%'" formControlName="description"></textarea>
 
