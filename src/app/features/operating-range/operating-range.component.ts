@@ -48,9 +48,60 @@ export class OperatingRangeComponent implements AfterViewInit, OnDestroy {
 
   changeZoom(card: number): void {
     if (this.map) {
-      if (card === 0) { this.map.setZoom(10) }
-      else if (card === 1) { this.map.setZoom(9) }
-      else if (card === 2) { this.map.setZoom(7) }
+      if (card === 0) {
+        this.map.setZoom(10);
+        // deixa somente a cor verde e remove as outras. Caso a cor verde não exista, cria
+        this.map.eachLayer((layer) => {
+          if (layer instanceof L.Circle && layer.options.color !== 'green') {
+            this.map.removeLayer(layer);
+          }
+        });
+        let greenCircleExists = false;
+        this.map.eachLayer((layer) => {
+          if (layer instanceof L.Circle && layer.options.color === 'green') {
+            greenCircleExists = true;
+          }
+        });
+        if (!greenCircleExists) {
+          L.circle(this.center, { radius: this.content.ranges[0].range, color: 'green', fillOpacity: 0.2 }).addTo(this.map);
+        }
+      } else if (card === 1) {
+        this.map.setZoom(9);
+        // deixa somente a cor amarela e remove as outras. Caso a cor amarela não exista, cria
+        this.map.eachLayer((layer) => {
+          if (layer instanceof L.Circle && layer.options.color !== 'yellow') {
+            this.map.removeLayer(layer);
+          }
+        });
+        let yellowCircleExists = false;
+        this.map.eachLayer((layer) => {
+          if (layer instanceof L.Circle && layer.options.color === 'yellow') {
+            yellowCircleExists = true;
+          }
+        });
+        if (!yellowCircleExists) {
+          L.circle(this.center, { radius: this.content.ranges[1].range, color: 'yellow', fillOpacity: 0.2 }).addTo(this.map);
+        }
+      } else if (card === 2) {
+        this.map.setZoom(7);
+        // deixa somente a cor vermelha e remove as outras. Caso a cor vermelha não exista, cria
+        this.map.eachLayer((layer) => {
+          if (layer instanceof L.Circle && layer.options.color !== 'red') {
+            this.map.removeLayer(layer);
+          }
+        });
+        let redCircleExists = false;
+        this.map.eachLayer((layer) => {
+          if (layer instanceof L.Circle && layer.options.color === 'red') {
+            redCircleExists = true;
+          }
+        });
+        if (!redCircleExists) {
+          L.circle(this.center, { radius: this.content.ranges[2].range, color: 'red', fillOpacity: 0.2 }).addTo(this.map);
+        }
+      }
+
+      this.map.setView(this.center);
     }
   }
 
