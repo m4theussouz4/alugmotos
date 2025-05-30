@@ -142,6 +142,9 @@ export class PlansComponent implements OnInit {
       return;
     }
 
+    // Coloca o array de motocicletas em ordem
+    value.plans.sort((a: any, b: any) => a.order - b.order);
+
     if (!valid) {
       alert('Preencha todos os campos');
       return;
